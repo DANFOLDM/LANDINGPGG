@@ -13,9 +13,10 @@ setInterval(showSlides, 5000);
 
 // Modal and form logic after DOM is fully loaded
 document.addEventListener("DOMContentLoaded", function () {
-  const modal = document.getElementById("emailModal");
+  const modal = document.getElementById("signupModal");
   const openBtn = document.getElementById("openModalBtn");
-  const closeBtn = document.querySelector(".close-btn");
+  const closeBtn = document.querySelector(".close-modal");
+  const form = document.querySelector("#signupModal form"); // select the form inside modal
 
   // ✅ Open modal
   if (openBtn) {
@@ -41,34 +42,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // ✅ Initialize EmailJS
-  emailjs.init("GxYFAN19aGFQmpKPD"); // Replace with your EmailJS public key
-
-  // ✅ Handle form submission
-  const emailForm = document.getElementById("emailForm");
-  if (emailForm) {
-    emailForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const formData = {
-        from_name: document.getElementById("userName").value,
-        from_email: document.getElementById("userEmail").value
-      };
-
-      emailjs.send("service_s0mc9z4", "template_ittxkll", formData)
-        .then(function () {
-          alert("✅ Email sent successfully!");
-          emailForm.reset();
-          modal.style.display = "none";
-
-          // ✅ Redirect to thank-you page after 5 seconds
-          setTimeout(() => {
-            window.location.href = "ThankYpg.html"; // Change if needed
-          }, 5000);
-        }, function (error) {
-          console.error("❌ Email send failed:", error);
-          alert("❌ Failed to send email. Please try again.");
-        });
+  // ✅ Submit event to trigger redirect after delay
+  if (form) {
+    form.addEventListener("submit", function () {
+      setTimeout(() => {
+        window.location.href = "ThankYpg.html"; // Change if needed
+      }, 5000);
     });
   }
 });
