@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (form) {
     form.addEventListener("submit", function () {
       setTimeout(() => {
-        window.location.href = "ThankYpg.html"; // Change if needed
+        window.location.href = "thankyou.html"; // Change if needed
       }, 5000);
     });
   }
